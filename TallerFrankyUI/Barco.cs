@@ -64,11 +64,8 @@ namespace Parcial.WindowsForm
         public override string ToString()
         {
             StringBuilder texto = new StringBuilder();
-            texto.AppendLine($"{this.costo}");
-            texto.AppendLine($"{this.EstadoReparado}");
-            texto.AppendLine($"{this.Nombre}");
-            texto.AppendLine($"{this.Operacion}");
-            texto.AppendLine($"{this.Tripulacion}");
+            texto.AppendLine($" {this.Nombre} ");
+            texto.AppendLine($" {this.EstadoReparado} ");
             return texto.ToString();
         }
 

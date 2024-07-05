@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Parcial.WindowsForm;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,9 +14,10 @@ namespace TallerFrankyUi
 {
     public partial class FrmReparacion : Form
     {
-        
-        public FrmReparacion()
+        Taller Taller { get; set; }
+        public FrmReparacion(Taller taller)
         {
+            this.Taller = taller;
             InitializeComponent();
         }
 
@@ -23,7 +25,14 @@ namespace TallerFrankyUi
         {
             //TODO: Asocio el evento que va a imprimir el ticket
             //TODO: Instanciar y comenzar el hilo que se va a encargar de reparar los barcos del taller
-           
+            List<string> lista = new List<string>();
+            foreach(Barco b in Taller.Barcos)
+            {
+                lista.Add(b.ToString());
+            }
+            
+            lstTaller.Items.AddRange(lista.ToArray());
+            Taller.Reparar(Taller.Barcos);
            
         }
 

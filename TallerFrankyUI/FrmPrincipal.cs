@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using MySqlX.XDevAPI.Common;
 
 namespace TallerFrankyUi
 {
@@ -22,27 +23,39 @@ namespace TallerFrankyUi
             Taller = new Taller();
         }
 
+        public void AñadirBarco(Barco barco, DialogResult result)
+        {
+            if (!Taller.EncontrarBarco(barco) && result == DialogResult.OK) 
+            {
+                Taller.Barcos.Add(barco);
+            }
+            
+        }
         private void btnCargarBarco_Click(object sender, EventArgs e)
         {
-               
+            FrmBarco f = new FrmBarco(this);
+            f.Show();
+
         }
 
         private void btnReparar_Click(object sender, EventArgs e)
         {
-            
+            FrmReparacion f = new FrmReparacion(Taller);
+            f.Show();
         }
 
         private void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //TODO: Preguntarle al usuario si esta seguro de salir del formulario
-           
+            DialogResult result = MessageBox.Show("Desea salir?", "Salir", MessageBoxButtons.YesNo);
+           if(result == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            Xml
-            //TODO: Utilizar la clase XmlManager para guardar el archivo xml
-           
+            Xml.Guardar(Taller.Barcos, "prueba.xml");           
         }
 
         private void FrmPrincipal_Load(object sender, EventArgs e)

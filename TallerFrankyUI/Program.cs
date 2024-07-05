@@ -16,7 +16,7 @@ namespace TallerFrankyUi
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmReparacion());
+            Application.Run(new FrmPrincipal());
         }
     }
 }

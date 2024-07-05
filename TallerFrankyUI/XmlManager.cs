@@ -10,11 +10,11 @@ namespace Parcial.WindowsForm
 {
     public class XmlManager: IArchivos
     {
-        public bool Guardar(Object obj, string path)
+        public bool Guardar(List<Barco> obj, string path)
         {
             try
             {
-                XmlSerializer serial = new XmlSerializer(typeof(Barco));
+                XmlSerializer serial = new XmlSerializer(typeof(List<Barco>));
                 using (StreamWriter writer = new StreamWriter(path))
                 {
                     serial.Serialize(writer, obj);

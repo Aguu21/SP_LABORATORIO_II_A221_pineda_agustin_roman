@@ -24,13 +24,7 @@ namespace Parcial.WindowsForm
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    var empleado = new Usuario
-                    {
-                        Id = reader.GetInt32("id"),
-                        Nombre = reader.GetString("nombre"),
-                        Edad = reader.GetInt32("edad"),
-                        Fecha = reader.GetDateTime("fecha")
-                    };
+                    //Guardar las cosas de la tabla
                 }
             }
         }

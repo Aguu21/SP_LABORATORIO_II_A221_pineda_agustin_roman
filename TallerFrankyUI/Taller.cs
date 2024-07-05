@@ -55,7 +55,7 @@ namespace Parcial.WindowsForm
                             if(b is Pirata p)
                             {
                                 p.CalcularCostos();
-                                //Agregar a la db
+                                AccesoDatos.Guardar(p.Nombre,(int)p.Costo);
                             }
                             else if(b is Marina m)
                             {

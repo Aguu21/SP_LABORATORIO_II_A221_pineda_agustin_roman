@@ -8,7 +8,7 @@ namespace Parcial.WindowsForm
 {
     public interface IArchivos
     {
-        bool Guardar(Object obj, string path);
+        bool Guardar(List<Barco> obj, string path);
         List<Barco> Leer(string path);
     }
 }
