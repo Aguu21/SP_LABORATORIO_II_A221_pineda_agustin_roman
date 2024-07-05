@@ -4,23 +4,19 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Markup;
 
 namespace Parcial.WindowsForm
 {
     public class Taller
     {
-        List<Barco> barcos;
-
-        public List<Barco> Barcos 
-        {
-            get => this.barcos;
-            set => this.barcos = value;
-        }
+        public List<Barco> Barcos { get; set; }
 
         public Taller()
         {
             Barcos = new List<Barco>();
         }
+
 
         public bool EncontrarBarco(Barco barco)
         {

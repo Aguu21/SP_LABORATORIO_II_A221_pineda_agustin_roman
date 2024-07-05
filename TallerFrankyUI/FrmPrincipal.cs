@@ -55,7 +55,11 @@ namespace TallerFrankyUi
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            Xml.Guardar(Taller.Barcos, "prueba.xml");           
+            if (Taller.Barcos != null)
+            {
+                Xml.Guardar(Taller.Barcos, "prueba.xml");
+            }
+            
         }
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
