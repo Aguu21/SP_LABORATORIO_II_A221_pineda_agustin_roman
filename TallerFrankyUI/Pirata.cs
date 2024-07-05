@@ -4,11 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace Parcial.WindowsForm
 {
+    [Serializable]
     public class Pirata: Barco
     {
+        [XmlElement("Tripulacion")]
         public override int Tripulacion
         {
             get; set;

@@ -12,32 +12,37 @@ namespace Parcial.WindowsForm
     [XmlInclude(typeof(Marina))]
     public abstract class Barco
     {
-        float costo;
-        bool estadoReparado;
-        string nombre;
-        EOperacion operacion;
-        int tripulacion;
+        protected float costo;
+        protected bool estadoReparado;
+        protected string nombre;
+        protected EOperacion operacion;
+        protected int tripulacion;
 
-        protected float Costo
+        [XmlElement("Costo")]
+        public float Costo
         {
             get => this.costo;
             set => this.costo = value;
         }
-        protected bool EstadoReparado
+        [XmlElement("EstadoReparado")]
+        public bool EstadoReparado
         {
             get => this.estadoReparado;
             set => this.estadoReparado = value;
         }
-        protected string Nombre
+        [XmlElement("Nombre")]
+        public string Nombre
         {
             get => this.nombre; 
             set => this.nombre = value;
         }
-        protected EOperacion Operacion
+        [XmlElement("Operacion")]
+        public EOperacion Operacion
         {
             get => this.operacion; 
             set => this.operacion = value;
         }
+        [XmlElement("Tripulacion")]
         public abstract int Tripulacion
         {
             get; set;
