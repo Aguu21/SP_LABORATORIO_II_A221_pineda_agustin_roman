@@ -32,7 +32,6 @@ namespace TallerFrankyUi
             }
             
             lstTaller.Items.AddRange(lista.ToArray());
-            Taller.Reparar(Taller.Barcos);
            
         }
 

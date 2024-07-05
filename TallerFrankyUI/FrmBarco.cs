@@ -35,7 +35,7 @@ namespace TallerFrankyUi
         {
             if((string)cmbTipo.SelectedValue == "Pirata") 
             {
-                Pirata p = new Pirata(0, true, (string)txtNombre.Text, EOperacion.Pintar, 0);
+                Pirata p = new Pirata(0, false, (string)txtNombre.Text, EOperacion.Pintar, 0);
                 DialogResult result = MessageBox.Show("Estas seguro?", "Asegurar", MessageBoxButtons.OK);
                 principal.AñadirBarco(p, result);
             }
