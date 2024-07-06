@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfBarco xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Barco xsi:type="Pirata">
+    <Costo>0</Costo>
+    <EstadoReparado>true</EstadoReparado>
+    <Nombre>rererer</Nombre>
+    <Operacion>Reparar_Mastil</Operacion>
+    <Tripulacion>0</Tripulacion>
+  </Barco>
+</ArrayOfBarco>

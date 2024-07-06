@@ -120,6 +120,7 @@
     <Compile Include="FrmBarco.Designer.cs">
       <DependentUpon>FrmBarco.cs</DependentUpon>
     </Compile>
+    <Compile Include="GenerarRandom.cs" />
     <Compile Include="IArchivos.cs" />
     <Compile Include="Marina.cs" />
     <Compile Include="Pirata.cs" />

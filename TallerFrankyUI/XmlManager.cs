@@ -8,8 +8,10 @@ using System.Xml.Serialization;
 
 namespace Parcial.WindowsForm
 {
+    //Manejador de interacciones con archivos XML
     public class XmlManager: IArchivos
     {
+        //Guarda el objeto dado en un archivo XML
         public bool Guardar(List<Barco> obj, string path)
         {
             try
@@ -27,6 +29,8 @@ namespace Parcial.WindowsForm
                 return false;
             }
         }
+
+        //Lee un archivo XML y guarda su contenido en una variable.
         public List<Barco> Leer(string path)
         {
             try
