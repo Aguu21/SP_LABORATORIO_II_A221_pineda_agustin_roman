@@ -37,12 +37,14 @@ namespace TallerFrankyUi
 
         private void FrmReparacion_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+            DialogResult result = MessageBox.Show("¿Desea salir?", "Salir",
+                MessageBoxButtons.YesNo);
+            e.Cancel = result == DialogResult.No ? true : false;
         }
 
         private void lblBarcoTipo_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("Hola", "Que haces", MessageBoxButtons.OK);
         }
     }
 }

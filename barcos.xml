@@ -5,6 +5,6 @@
     <EstadoReparado>true</EstadoReparado>
     <Nombre>rererer</Nombre>
     <Operacion>Reparar_Mastil</Operacion>
-    <Tripulacion>0</Tripulacion>
+    <Tripulacion>17</Tripulacion>
   </Barco>
 </ArrayOfBarco>

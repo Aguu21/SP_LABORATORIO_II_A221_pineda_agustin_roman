@@ -29,9 +29,9 @@ namespace TallerFrankyUi
         //Agrega un barco a la lista dado un result ok
         public void AgregarBarco(DialogResult result)
         {
-            if (!Taller.EncontrarBarco(Barco) && result == DialogResult.OK)
+            if (result == DialogResult.OK)
             {
-                Taller.Barcos.Add(Barco);
+                Taller.IngresarBarco(Barco);
             }
             
         }

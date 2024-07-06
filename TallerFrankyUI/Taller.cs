@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Windows.Markup;
 
 namespace Parcial.WindowsForm
@@ -22,7 +23,7 @@ namespace Parcial.WindowsForm
         {
             foreach(Barco b in Barcos)
             {
-                if(b == barco)
+                if (b.CompararBarcos(barco))
                 {
                     return true;
                 }

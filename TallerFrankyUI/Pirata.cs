@@ -14,11 +14,23 @@ namespace Parcial.WindowsForm
         [XmlElement("Tripulacion")]
         public override int Tripulacion
         {
-            get; set;
+            get { return this.tripulacion; }
+            set
+            {
+                if (value == 0)
+                {
+                    this.tripulacion = GenerarRandom.EnteroAleatorio(10, 30);
+                }
+                else
+                {
+                    this.tripulacion = value;
+                }
+            }
         }
 
         public override void CalcularCostos()
         {
+            Costo = (float)GenerarRandom.DoubleAleatorio(2000, 12000);
             Random rand = new Random();
             Costo = rand.Next(2000, 1200);
         }
@@ -36,7 +48,7 @@ namespace Parcial.WindowsForm
         {
             StringBuilder texto = new StringBuilder();
             texto.Append(base.ToString());
-            texto.AppendLine($"{Tripulacion}");
+            texto.AppendLine($" Tripulación: {Tripulacion}");
             return texto.ToString();
         }
     }

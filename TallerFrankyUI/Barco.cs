@@ -43,10 +43,7 @@ namespace Parcial.WindowsForm
             set => this.operacion = value;
         }
         [XmlElement("Tripulacion")]
-        public abstract int Tripulacion
-        {
-            get; set;
-        }
+        public abstract int Tripulacion { get; set; }
 
         public abstract void CalcularCostos();
 
@@ -64,14 +61,15 @@ namespace Parcial.WindowsForm
         public override string ToString()
         {
             StringBuilder texto = new StringBuilder();
-            texto.AppendLine($" {this.Nombre} ");
-            texto.AppendLine($" {this.EstadoReparado} ");
+            texto.AppendLine($" Nombre: {this.Nombre} |");
+            texto.AppendLine($" Operacion: {this.Operacion} |");
+            texto.AppendLine($" Estado_Reparado: {this.Operacion} |");
             return texto.ToString();
         }
 
-        public bool CompararBarcos(Barco b1, Barco b2)
+        public bool CompararBarcos(Barco barco)
         {
-            if(b1.Nombre == b2.Nombre)
+            if(this.Nombre == barco.Nombre)
             {
                 return true;
             }

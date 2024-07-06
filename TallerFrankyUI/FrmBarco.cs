@@ -44,9 +44,9 @@ namespace TallerFrankyUi
                 DialogResult result = MessageBox.Show("¿Estás seguro?",
                     "Confirmación Barco", MessageBoxButtons.OK);
                 Principal.Barco = p;
-                Principal.AñadirBarco(result);
+                Principal.AgregarBarco(result);
             }
-            else if ((ETipoBarco)cmbTipo.SelectedItem == ETipoBarco.Pirata)
+            else if ((ETipoBarco)cmbTipo.SelectedItem == ETipoBarco.Marina)
             {
                 Marina m = new Marina
                 {
@@ -59,7 +59,7 @@ namespace TallerFrankyUi
                 DialogResult result = MessageBox.Show("¿Estás seguro?",
                     "Confirmación Barco", MessageBoxButtons.OK);
                 Principal.Barco = m;
-                Principal.AñadirBarco(result);
+                Principal.AgregarBarco(result);
             }
         }
      

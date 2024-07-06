@@ -12,6 +12,11 @@ namespace Parcial.WindowsForm
         //Genera un double dados sus limites
         public static double DoubleAleatorio(int val1, int val2)
         {
+            if (val1 < val2)
+            {
+                throw new ArgumentException(
+                    "El primer valor debe ser el mayor");
+            }
             Random rand = new Random();
             return rand.NextDouble() * (val2 - val1) + val1;
         }
