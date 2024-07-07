@@ -267,6 +267,7 @@ namespace Parcial.WindowsForm
 
                 command.CommandText = $"DELETE FROM barcos " +
                     $"WHERE nombre = @nombre";
+                command.Parameters.Clear();
 
                 command.Parameters.AddWithValue("@nombre",
                     nombre);
