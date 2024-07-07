@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Parcial.WindowsForm
 {
+    //Operaciones posibles para aplicar a los barcos.
     public enum EOperacion
     {
         Reparar_Mastil,

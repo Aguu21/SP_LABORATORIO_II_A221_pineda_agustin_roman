@@ -10,6 +10,7 @@ namespace Parcial.WindowsForm
     [Serializable]
     [XmlInclude(typeof(Pirata))]
     [XmlInclude(typeof(Marina))]
+    //Clase abstracta que abarca las caracteristicas de un barco.
     public abstract class Barco
     {
         protected float costo;
@@ -47,6 +48,7 @@ namespace Parcial.WindowsForm
 
         public abstract void CalcularCostos();
 
+        //Constructor vacio para serializar.
         public Barco() { }
 
         public Barco(float costo, bool estadoReparado, string nombre, 
@@ -63,20 +65,14 @@ namespace Parcial.WindowsForm
             StringBuilder texto = new StringBuilder();
             texto.AppendLine($" Nombre: {this.Nombre} |");
             texto.AppendLine($" Operacion: {this.Operacion} |");
-            texto.AppendLine($" Estado_Reparado: {this.Operacion} |");
+            texto.AppendLine($" Estado_Reparado: {this.EstadoReparado} |");
             return texto.ToString();
         }
 
+        //Compara barcos por nombre.
         public bool CompararBarcos(Barco barco)
         {
-            if(this.Nombre == barco.Nombre)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return this.Nombre == barco.Nombre;
         }
 
     }

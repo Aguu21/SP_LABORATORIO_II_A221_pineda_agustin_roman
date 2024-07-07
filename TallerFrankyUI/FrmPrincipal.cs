@@ -13,6 +13,7 @@ using MySqlX.XDevAPI.Common;
 
 namespace TallerFrankyUi
 {
+    //El form con todas las funciones principales.
     public partial class FrmPrincipal : Form
     {
         public Taller Taller { get; set; }
@@ -62,11 +63,20 @@ namespace TallerFrankyUi
         //Guarda la lista en un archivo XML.
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (Taller.Barcos != null)
+            try
             {
-                Xml.Guardar(Taller.Barcos, "../../../barcos.xml");
+                if (Taller.Barcos != null)
+                {
+                    Xml.Guardar(Taller.Barcos, "../../../barcos.xml");
+                }
+                MessageBox.Show("Se guardó con éxito la lista.", 
+                    "Guardar Lista", MessageBoxButtons.OK);
             }
-            
+            catch(Exception ex)
+            {
+                MessageBox.Show($"Error: {ex}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }            
         }
 
         private void FrmPrincipal_Load(object sender, EventArgs e)

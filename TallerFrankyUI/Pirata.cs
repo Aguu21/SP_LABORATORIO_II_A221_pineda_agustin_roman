@@ -9,6 +9,7 @@ using System.Xml.Serialization;
 namespace Parcial.WindowsForm
 {
     [Serializable]
+    //Un tipo de Barco.
     public class Pirata: Barco
     {
         [XmlElement("Tripulacion")]
@@ -28,20 +29,20 @@ namespace Parcial.WindowsForm
             }
         }
 
+        //Genera un valor para Costo aleatorio.
         public override void CalcularCostos()
         {
             Costo = (float)GenerarRandom.DoubleAleatorio(2000, 12000);
-            Random rand = new Random();
-            Costo = rand.Next(2000, 1200);
         }
 
+        //Constructor vacio para serializar.
         public Pirata() { }
 
         public Pirata(float costo, bool estadoReparado, string nombre, 
             EOperacion operacion, int tripulacion) : 
             base(costo, estadoReparado, nombre, operacion)
         {
-            this.Tripulacion = tripulacion;
+            this.tripulacion = tripulacion;
         }
 
         public override string ToString()

@@ -7,4 +7,18 @@
     <Operacion>Reparar_Mastil</Operacion>
     <Tripulacion>17</Tripulacion>
   </Barco>
+  <Barco xsi:type="Pirata">
+    <Costo>2213.307</Costo>
+    <EstadoReparado>true</EstadoReparado>
+    <Nombre>A</Nombre>
+    <Operacion>Reparar_Mastil</Operacion>
+    <Tripulacion>11</Tripulacion>
+  </Barco>
+  <Barco xsi:type="Marina">
+    <Costo>5426.614</Costo>
+    <EstadoReparado>true</EstadoReparado>
+    <Nombre>B</Nombre>
+    <Operacion>Reparar_Mastil</Operacion>
+    <Tripulacion>36</Tripulacion>
+  </Barco>
 </ArrayOfBarco>

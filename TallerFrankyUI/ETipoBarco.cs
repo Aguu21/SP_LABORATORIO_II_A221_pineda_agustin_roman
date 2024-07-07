@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Parcial.WindowsForm
 {
+    //Tipos de barcos posibles.
     public enum ETipoBarco
     {
         Pirata,

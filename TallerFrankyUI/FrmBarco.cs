@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace TallerFrankyUi
 {
+    //Permite instanciar barcos y hacer que el FrmPrincipal los agregue.
     public partial class FrmBarco : Form
     {
         FrmPrincipal Principal { get; set; }
@@ -36,7 +37,7 @@ namespace TallerFrankyUi
                 Pirata p = new Pirata
                 {
                     Costo = 0,
-                    EstadoReparado = true,
+                    EstadoReparado = false,
                     Nombre = txtNombre.Text,
                     Operacion = (EOperacion)cmbOperacion.SelectedItem,
                     Tripulacion = 0
@@ -51,7 +52,7 @@ namespace TallerFrankyUi
                 Marina m = new Marina
                 {
                     Costo = 0,
-                    EstadoReparado = true,
+                    EstadoReparado = false,
                     Nombre = txtNombre.Text,
                     Operacion = (EOperacion)cmbOperacion.SelectedItem,
                     Tripulacion = 0

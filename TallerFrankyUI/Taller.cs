@@ -9,6 +9,7 @@ using System.Windows.Markup;
 
 namespace Parcial.WindowsForm
 {
+    //Cuenta con una lista de Barco que pueden reparar, encontrar o ingresar.
     public class Taller
     {
         public List<Barco> Barcos { get; set; }
@@ -18,7 +19,7 @@ namespace Parcial.WindowsForm
             Barcos = new List<Barco>();
         }
 
-
+        //Revisa si hay barcos repetidos en el taller.
         public bool EncontrarBarco(Barco barco)
         {
             foreach(Barco b in Barcos)
@@ -30,6 +31,8 @@ namespace Parcial.WindowsForm
             }
             return false;
         }
+        
+        //Agrega un Barco al taller.
         public Taller IngresarBarco(Barco b)
         {
             if (!EncontrarBarco(b))
@@ -39,28 +42,29 @@ namespace Parcial.WindowsForm
             return this;
         }
 
+        //Cambia el EstadoReparado de los barcos dado un taller.
         public bool Reparar(Object t)
         {
+            if (!(t is Taller taller)) return false;
+
             try
             {
-                if (t is Taller taller)
+                foreach (Barco b in taller.Barcos)
                 {
-                    foreach (Barco b in taller.Barcos)
+                    if (!b.EstadoReparado)
                     {
-                        if (!b.EstadoReparado)
+                        switch(b)
                         {
-                            if(b is Pirata p)
-                            {
+                            case Pirata p:
                                 p.CalcularCostos();
-                                AccesoDatos.Guardar(p.Nombre,(int)p.Costo);
-                            }
-                            else if(b is Marina m)
-                            {
-                                m.CalcularCostos();
-                                //Agregar a la db
-                            }
-                            b.EstadoReparado = true;
+                                //BD
+                                break;
+                            case Marina m:
+                                m.CalcularCostos(); 
+                                //BD
+                                break;
                         }
+                        b.EstadoReparado = true;
                     }
                 }
                 return true;
