@@ -1,4 +1,6 @@
-﻿using Parcial.WindowsForm;
+﻿using Mysqlx.Session;
+using MySqlX.XDevAPI.Common;
+using Parcial.WindowsForm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,10 +17,23 @@ namespace TallerFrankyUi
     public partial class FrmBarco : Form
     {
         FrmPrincipal Principal { get; set; }
+        bool Cargar { get; set; }
+        Barco Barco { get; set; }
+
         public FrmBarco(FrmPrincipal principal)
         {
             InitializeComponent();
-            this.Principal = principal;
+            Principal = principal;
+            Cargar = true;
+            Barco = null;
+        }
+
+        public FrmBarco(FrmPrincipal principal, Barco b)
+        {
+            InitializeComponent ();
+            Principal = principal;
+            Barco = b;
+            Cargar = false;
         }
 
         //Cargar los ComboBox con los datos de los Enum
@@ -26,13 +41,41 @@ namespace TallerFrankyUi
         {
             cmbTipo.DataSource = Enum.GetValues(typeof(ETipoBarco));
             cmbOperacion.DataSource = Enum.GetValues(typeof(EOperacion));
+            if (!Cargar)
+            {
+                cmbOperacion.SelectedItem = Barco.Operacion;
+
+                if (Barco is Pirata p)
+                {
+                    cmbTipo.SelectedItem = ETipoBarco.Pirata;
+                }
+                else if (Barco is Marina m)
+                {
+                    cmbTipo.SelectedItem = ETipoBarco.Marina;
+                }
+                txtNombre.Text = Barco.Nombre;
+            }
         }
 
 
         //Envia una señal al FrmPrincipal para que agregue el barco instanciado
         private void btnCargar_Click(object sender, EventArgs e)
         {
-            if((ETipoBarco)cmbTipo.SelectedItem == ETipoBarco.Pirata)
+            if (Cargar)
+            {
+                CargarBarco();
+            }
+            else
+            {
+                ActualizarBarco();
+                this.Close();
+            }
+        }
+
+        private void CargarBarco()
+        {
+            DialogResult result = DialogResult.None;
+            if((ETipoBarco) cmbTipo.SelectedItem == ETipoBarco.Pirata)
             {
                 Pirata p = new Pirata
                 {
@@ -42,12 +85,10 @@ namespace TallerFrankyUi
                     Operacion = (EOperacion)cmbOperacion.SelectedItem,
                     Tripulacion = 0
                 };
-                DialogResult result = MessageBox.Show("¿Estás seguro?",
-                    "Confirmación Barco", MessageBoxButtons.OK);
                 Principal.Barco = p;
                 Principal.AgregarBarco(result);
             }
-            else if ((ETipoBarco)cmbTipo.SelectedItem == ETipoBarco.Marina)
+            else if ((ETipoBarco) cmbTipo.SelectedItem == ETipoBarco.Marina)
             {
                 Marina m = new Marina
                 {
@@ -57,12 +98,45 @@ namespace TallerFrankyUi
                     Operacion = (EOperacion)cmbOperacion.SelectedItem,
                     Tripulacion = 0
                 };
-                DialogResult result = MessageBox.Show("¿Estás seguro?",
-                    "Confirmación Barco", MessageBoxButtons.OK);
                 Principal.Barco = m;
-                Principal.AgregarBarco(result);
             }
+            result = MessageBox.Show("¿Estás seguro?",
+                    "Confirmación Barco", MessageBoxButtons.OK);
+            Principal.AgregarBarco(result);
         }
-     
+
+        private void ActualizarBarco()
+        {
+            DialogResult result = DialogResult.None;
+            if ((ETipoBarco)cmbTipo.SelectedItem == ETipoBarco.Pirata)
+            {
+                Pirata p = new Pirata
+                {
+                    Costo = Barco.Costo,
+                    EstadoReparado = Barco.EstadoReparado,
+                    Nombre = txtNombre.Text,
+                    Operacion = (EOperacion)cmbOperacion.SelectedItem,
+                    Tripulacion = Barco.Tripulacion
+                };
+                Principal.Barco = p;
+            }
+            else if ((ETipoBarco)cmbTipo.SelectedItem == ETipoBarco.Marina)
+            {
+                Marina m = new Marina
+                {
+                    Costo = Barco.Costo,
+                    EstadoReparado = Barco.EstadoReparado,
+                    Nombre = txtNombre.Text,
+                    Operacion = (EOperacion)cmbOperacion.SelectedItem,
+                    Tripulacion = Barco.Tripulacion
+                };
+                Principal.Barco = m;
+            }
+
+            result = MessageBox.Show("¿Estás seguro?",
+                    "Confirmación Barco", MessageBoxButtons.OK);
+
+            Principal.ActualizarBarco(result, Barco.Nombre);
+        }
     }
 }

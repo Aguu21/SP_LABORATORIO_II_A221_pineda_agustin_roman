@@ -18,23 +18,75 @@ namespace TallerFrankyUi
     {
         public Taller Taller { get; set; }
         public Barco Barco { get; set; }
-        public XmlManager Xml {  get; set; }
+        public XmlManager Xml { get; set; }
+
+        List<FrmReparacion> Formularios {get; set;}
+
+        public EModo Modo { get; set; }
 
         public FrmPrincipal()
         {
             InitializeComponent();
             Taller = new Taller();
             Xml = new XmlManager();
+            Modo = new EModo();
+            Formularios = new List<FrmReparacion>();
         }
 
-        //Agrega un barco a la lista dado un result ok
+        //Actualiza los forms que haya abiertos
+        private void ActualizarForms()
+        {
+            foreach (FrmReparacion form in Formularios)
+            {
+                form.ActualizarLista();
+            }
+        }
+
+        public void SacarForm(FrmReparacion form)
+        {
+            Formularios.Remove(form);
+        }
+
+        //Agrega un barco a la lista dado un result ok.
         public void AgregarBarco(DialogResult result)
         {
             if (result == DialogResult.OK)
             {
+                if (Modo == EModo.Sql && !Taller.EncontrarBarco(Barco))
+                {
+                    AccesoDatos.GuardarBarco(Barco);
+                }
                 Taller.IngresarBarco(Barco);
+                ActualizarForms();
             }
-            
+        }
+
+        //Actualiza un barco en la lista dado un result ok.
+        public void ActualizarBarco(DialogResult result, string nombreViejo)
+        {
+            if (result == DialogResult.OK)
+            {
+                if (Modo == EModo.Sql)
+                {
+                    AccesoDatos.ActualizarBarco(Barco, nombreViejo);
+                }
+                Taller.ActualizarBarco(Barco, nombreViejo);
+                ActualizarForms();
+            }
+        }
+
+        //Borra un barco en la lista dado un result yes.
+        public void BorrarBarco(DialogResult result)
+        {
+            if (result == DialogResult.Yes)
+            {
+                if (Modo == EModo.Sql)
+                {
+                    AccesoDatos.BorrarBarco(Barco.Nombre);
+                }
+                Taller.BorrarBarco(Barco);
+                ActualizarForms();
+            }
         }
 
         //Muestra el fomrulario de cargar barco.
@@ -47,7 +99,8 @@ namespace TallerFrankyUi
         //Muestra el formulario de taller.
         private void btnReparar_Click(object sender, EventArgs e)
         {
-            FrmReparacion f = new FrmReparacion(Taller);
+            FrmReparacion f = new FrmReparacion(this, Taller, Modo);
+            Formularios.Add(f);
             f.Show();
         }
 
@@ -56,7 +109,7 @@ namespace TallerFrankyUi
             FormClosingEventArgs e)
         {
             DialogResult result = MessageBox.Show("¿Desea salir?", "Salir",
-                MessageBoxButtons.YesNo);
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             e.Cancel = result == DialogResult.No ? true : false;
         }
 
@@ -81,12 +134,43 @@ namespace TallerFrankyUi
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
-            //Carga la lista por archivo XML.
-            string path = "../../../barcos.xml";
-            if (File.Exists(path))
+            //Se determina en que modo se inciará el programa.
+            DialogResult result = MessageBox.Show("¿Desea iniciar en el " +
+                "modo SQL? Si presiona 'No' se utilizará el modo XML", "Modo",
+                MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
             {
-                Taller.Barcos = Xml.Leer(path);
+                if (AccesoDatos.IntentarConexion())
+                {
+                    Modo = EModo.Sql;
+                }
+                else
+                {
+                    MessageBox.Show($"La base de datos es inaccesible, " +
+                        $"se inició en modo XML", "Modo",MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    Modo = EModo.Xml;
+                }
             }
+            else { Modo = EModo.Xml; }
+
+            //Determina como se debe llenar la lista.
+            if (Modo == EModo.Xml)
+            {
+                string path = "../../../barcos.xml";
+                if (File.Exists(path))
+                {
+                    Taller.Barcos = Xml.Leer(path);
+                }
+            }
+            else if (Modo == EModo.Sql)
+            {
+                if (AccesoDatos.IntentarConexion())
+                {
+                    Taller.Barcos = AccesoDatos.LeerBarcos();
+                }
+            }
+            
         }
     }
 }

@@ -15,19 +15,20 @@ namespace TallerFrankyUi
     //Muestra los barcos y permite repararlos a un costo.
     public partial class FrmReparacion : Form
     {
+        FrmPrincipal Principal { get; set; }
         Taller Taller { get; set; }
-        public FrmReparacion(Taller taller)
+        EModo Modo { get; set; }
+        public FrmReparacion(FrmPrincipal principal, Taller taller, EModo modo)
         {
+            Principal = principal;
             Taller = taller;
+            Modo = modo;
             InitializeComponent();
         }
 
         private void FrmReparacion_Load(object sender, EventArgs e)
         {
-            //TODO: Asocio el evento que va a imprimir el ticket
-            //TODO: Instanciar y comenzar el hilo que se va a encargar de reparar los barcos del taller
-            ActualizarLista();
-           
+            ActualizarLista();  
         }
 
         //Vacia y llena la lista con los barcos de Taller.
@@ -48,13 +49,9 @@ namespace TallerFrankyUi
             FormClosingEventArgs e)
         {
             DialogResult result = MessageBox.Show("¿Desea salir?", "Salir",
-                MessageBoxButtons.YesNo);
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             e.Cancel = result == DialogResult.No ? true : false;
-        }
-
-        private void lblBarcoTipo_Click(object sender, EventArgs e)
-        {
-            
+            Principal.SacarForm(this);
         }
 
         //Boton implementado para ver en tiempo real el cambio de
@@ -63,6 +60,16 @@ namespace TallerFrankyUi
         {
             if (Taller.Reparar(Taller))
             {
+                if (Modo == EModo.Sql)
+                {
+                    foreach(Barco b in Taller.Barcos)
+                    {
+                        if (b.EstadoReparado)
+                        {
+                            AccesoDatos.ActualizarEstadoCosto(b);
+                        }
+                    }
+                }
                 MessageBox.Show($"Si había barcos para reparar, " +
                     $"fueron reparados", "Reparar",
                     MessageBoxButtons.OK);
@@ -73,6 +80,29 @@ namespace TallerFrankyUi
                 MessageBox.Show($"Un error impidió reparar los barcos",
                     "Error", MessageBoxButtons.OK);
             }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            int index = lstTaller.SelectedIndex;
+            if (index == -1)
+            {
+                MessageBox.Show("Por favor seleccione un barco", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            FrmBarco f = new FrmBarco(Principal, Taller.Barcos[index]);
+            f.Show();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            int index = lstTaller.SelectedIndex;
+            Principal.Barco = Taller.Barcos[index];
+            DialogResult result = MessageBox.Show("¿Está seguro que desea " +
+                "eliminar el barco seleccionado?", "Borrar", 
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            Principal.BorrarBarco(result);
         }
     }
 }

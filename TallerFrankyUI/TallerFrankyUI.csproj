@@ -100,6 +100,7 @@
   <ItemGroup>
     <Compile Include="AccesoDatos.cs" />
     <Compile Include="Barco.cs" />
+    <Compile Include="EModo.cs" />
     <Compile Include="EOperacion.cs" />
     <Compile Include="ETipoBarco.cs" />
     <Compile Include="FrmPrincipal.cs">

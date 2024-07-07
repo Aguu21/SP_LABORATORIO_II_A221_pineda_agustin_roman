@@ -42,6 +42,21 @@ namespace Parcial.WindowsForm
             return this;
         }
 
+        //Actualiza un Barco en el taller.
+        public Taller ActualizarBarco(Barco b, string nombreViejo)
+        {
+            int index = Barcos.FindIndex(barco => 
+            barco.Nombre == nombreViejo);
+            Barcos[index] = b;
+            return this;
+        }
+
+        public Taller BorrarBarco(Barco b)
+        {
+            Barcos.Remove(b);
+            return this;
+        }
+
         //Cambia el EstadoReparado de los barcos dado un taller y guarda un
         //mensaje en la db.
         public bool Reparar(Object t)
@@ -59,15 +74,18 @@ namespace Parcial.WindowsForm
                         {
                             case Pirata p:
                                 p.CalcularCostos();
-                                result = AccesoDatos.Guardar(
-                                    p.Nombre, p.Costo);
+                                result = AccesoDatos.Guardar($"Se reparó " +
+                                    $"el {p.Nombre} a un costo de {p.Costo}" +
+                                    $" berries");
                                 break;
                             case Marina m:
                                 m.CalcularCostos();
-                                result  = AccesoDatos.Guardar(
-                                    m.Nombre, m.Costo);
+                                result = AccesoDatos.Guardar($"Se reparó " +
+                                    $"el {m.Nombre} a un costo de {m.Costo}" +
+                                    $" berries"); 
                                 break;
                         }
+
                         if (!result) { return false; }
                         b.EstadoReparado = true;
                     }
