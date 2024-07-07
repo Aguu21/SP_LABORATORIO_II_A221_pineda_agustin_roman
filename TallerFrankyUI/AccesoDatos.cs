@@ -26,6 +26,7 @@ namespace Parcial.WindowsForm
             command.Connection = connection;
         }
 
+        //Guarda el registro de reparacion en la base de datos.
         public static bool Guardar(string msj)
         {
             try
@@ -53,6 +54,7 @@ namespace Parcial.WindowsForm
             }
         }
 
+        //Trata de establecer una conexión.
         public static bool IntentarConexion()
         {
             try
@@ -64,6 +66,7 @@ namespace Parcial.WindowsForm
             catch { return false; }
         }
 
+        //Consigue la lista de barcos
         public static List<Barco> LeerBarcos()
         {
             try
@@ -125,6 +128,7 @@ namespace Parcial.WindowsForm
             }
         }
 
+        //Guarda un barco
         public static bool GuardarBarco(Barco barco)
         {
             try
@@ -174,6 +178,7 @@ namespace Parcial.WindowsForm
             }
         }
 
+        //Actualiza el estado y el costo una vez son reparados.
         public static bool ActualizarEstadoCosto(Barco barco)
         {
             try
@@ -207,6 +212,7 @@ namespace Parcial.WindowsForm
             }
         }
 
+        //Actualiza los valores modificados en FrmBarco.
         public static bool ActualizarBarco(Barco barco, string nombreViejo)
         {
             try
@@ -252,6 +258,7 @@ namespace Parcial.WindowsForm
             }
         }
 
+        //Elimina un barco.
         public static bool BorrarBarco(string nombre)
         {
             try

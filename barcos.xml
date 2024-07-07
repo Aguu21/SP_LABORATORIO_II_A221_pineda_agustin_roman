@@ -17,7 +17,7 @@
   <Barco xsi:type="Marina">
     <Costo>0</Costo>
     <EstadoReparado>false</EstadoReparado>
-    <Nombre>Barco C</Nombre>
+    <Nombre>Barco CD</Nombre>
     <Operacion>Recargar_Cañones</Operacion>
     <Tripulacion>44</Tripulacion>
   </Barco>

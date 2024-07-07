@@ -33,15 +33,18 @@ namespace TallerFrankyUi
             Formularios = new List<FrmReparacion>();
         }
 
-        //Actualiza los forms que haya abiertos
+        //Actualiza los forms que haya abiertos.
         private void ActualizarForms()
         {
             foreach (FrmReparacion form in Formularios)
             {
                 form.ActualizarLista();
             }
+            MessageBox.Show("Datos actualizados correctamente", "Datos",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        //Elimina un FrmReparacion de la lista.
         public void SacarForm(FrmReparacion form)
         {
             Formularios.Remove(form);
@@ -89,7 +92,7 @@ namespace TallerFrankyUi
             }
         }
 
-        //Muestra el fomrulario de cargar barco.
+        //Muestra el formulario de cargar barco.
         private void btnCargarBarco_Click(object sender, EventArgs e)
         {
             FrmBarco f = new FrmBarco(this);
