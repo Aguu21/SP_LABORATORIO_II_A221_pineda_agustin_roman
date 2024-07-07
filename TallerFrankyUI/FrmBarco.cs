@@ -72,6 +72,7 @@ namespace TallerFrankyUi
             }
         }
 
+        //Carga el barco.
         private void CargarBarco()
         {
             DialogResult result = DialogResult.None;
@@ -109,6 +110,7 @@ namespace TallerFrankyUi
             cmbTipo.SelectedIndex = 0;
         }
 
+        //Actualiza el barco.
         private void ActualizarBarco()
         {
             DialogResult result = DialogResult.None;
