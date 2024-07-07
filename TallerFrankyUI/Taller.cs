@@ -42,13 +42,15 @@ namespace Parcial.WindowsForm
             return this;
         }
 
-        //Cambia el EstadoReparado de los barcos dado un taller.
+        //Cambia el EstadoReparado de los barcos dado un taller y guarda un
+        //mensaje en la db.
         public bool Reparar(Object t)
         {
             if (!(t is Taller taller)) return false;
 
             try
             {
+                bool result = true;
                 foreach (Barco b in taller.Barcos)
                 {
                     if (!b.EstadoReparado)
@@ -57,13 +59,16 @@ namespace Parcial.WindowsForm
                         {
                             case Pirata p:
                                 p.CalcularCostos();
-                                //BD
+                                result = AccesoDatos.Guardar(
+                                    p.Nombre, p.Costo);
                                 break;
                             case Marina m:
-                                m.CalcularCostos(); 
-                                //BD
+                                m.CalcularCostos();
+                                result  = AccesoDatos.Guardar(
+                                    m.Nombre, m.Costo);
                                 break;
                         }
+                        if (!result) { return false; }
                         b.EstadoReparado = true;
                     }
                 }

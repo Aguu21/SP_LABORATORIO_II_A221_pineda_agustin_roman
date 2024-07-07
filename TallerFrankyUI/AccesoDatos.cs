@@ -4,54 +4,50 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
 namespace Parcial.WindowsForm
 {
     public static class AccesoDatos
     {
-        private static SqlCommand command;
-        private static SqlConnection connection;
-        private static string connectionString = $"server=localhost;user id=root;password=;database=parcial2;";
-        private static void AccesoDato() 
+        private static MySqlCommand command;
+        private static MySqlConnection connection;
+        private static string connectionString = 
+            $"server=localhost;user id=root;password=;database=parcial2;";
+        static AccesoDatos() 
         {
-            using (var connect = new MySqlConnection(connectionString)) 
-            {
-                connect.Open();
-                string query = "SELECT * FROM tablaparcial";
-                MySqlCommand cmd = new MySqlCommand(query, connect);
-                MySqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    //Guardar las cosas de la tabla
-                }
-            }
+            connection = new MySqlConnection(connectionString);
+            command = new MySqlCommand();
+            command.Connection = connection;
         }
 
-        public static bool Guardar(string nombre, int costo)
+        public static bool Guardar(string nombre, float costo)
         {
             try
             {
-                using (var connect = new MySqlConnection(connectionString))
-                {
-                    connect.Open();
-                    string query = "INSERT INTO tablaparcial (mensaje, alumno)" +
-                        $"VALUES (@mensjae, @alumno)";
-                    MySqlCommand cmd = new MySqlCommand(query, connect);
-                    
-                    cmd.Parameters.AddWithValue("@mensaje", $"Se reparó el " +
-                        $"{nombre} a un costo de {costo} berries.");
-
-                    cmd.Parameters.AddWithValue("@alumno", "Agustín Román " +
-                        "Pineda");
-                    cmd.ExecuteNonQuery();
-                }
+                connection.Open();
+                command.CommandText = $"INSERT INTO registros " +
+                    $"(mensaje, alumno) VALUES (@mensaje, @alumno)";
+                command.Parameters.AddWithValue("@mensaje",
+                    $"Se reparó el {nombre} a un costo de {costo} " +
+                    $"berries");
+                command.Parameters.AddWithValue("@alumno",
+                    "Agustín Román Pineda");
+                command.ExecuteNonQuery();
+                connection.Close();
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                MessageBox.Show($"Error: {ex}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+                }
                 return false;
             }
         }
