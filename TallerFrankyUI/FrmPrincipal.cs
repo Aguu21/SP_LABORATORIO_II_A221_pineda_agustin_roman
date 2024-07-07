@@ -102,7 +102,7 @@ namespace TallerFrankyUi
         //Muestra el formulario de taller.
         private void btnReparar_Click(object sender, EventArgs e)
         {
-            FrmReparacion f = new FrmReparacion(this, Taller, Modo);
+            FrmReparacion f = new FrmReparacion(this, Taller);
             Formularios.Add(f);
             f.Show();
         }

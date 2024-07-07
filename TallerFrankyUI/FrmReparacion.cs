@@ -17,12 +17,10 @@ namespace TallerFrankyUi
     {
         FrmPrincipal Principal { get; set; }
         Taller Taller { get; set; }
-        EModo Modo { get; set; }
-        public FrmReparacion(FrmPrincipal principal, Taller taller, EModo modo)
+        public FrmReparacion(FrmPrincipal principal, Taller taller)
         {
             Principal = principal;
             Taller = taller;
-            Modo = modo;
             InitializeComponent();
         }
 
@@ -68,16 +66,6 @@ namespace TallerFrankyUi
 
             if (Taller.Reparar(Taller))
             {
-                if (Modo == EModo.Sql)
-                {
-                    foreach (Barco b in Taller.Barcos)
-                    {
-                        if (b.EstadoReparado)
-                        {
-                            AccesoDatos.ActualizarEstadoCosto(b);
-                        }
-                    }
-                }
                 MessageBox.Show($"Si había barcos para reparar, " +
                     $"fueron reparados", "Reparar",
                     MessageBoxButtons.OK);

@@ -88,6 +88,7 @@ namespace Parcial.WindowsForm
 
                         if (!result) { return false; }
                         b.EstadoReparado = true;
+                        AccesoDatos.ActualizarEstadoCosto(b);
                     }
                 }
                 return true;
