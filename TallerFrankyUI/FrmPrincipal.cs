@@ -164,11 +164,8 @@ namespace TallerFrankyUi
                 }
             }
             else if (Modo == EModo.Sql)
-            {
-                if (AccesoDatos.IntentarConexion())
-                {
-                    Taller.Barcos = AccesoDatos.LeerBarcos();
-                }
+            {    
+                Taller.Barcos = AccesoDatos.LeerBarcos();   
             }
             
         }

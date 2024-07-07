@@ -58,11 +58,19 @@ namespace TallerFrankyUi
         //las reparaciones. Los comentarios pedian el uso de hilos.
         private void btnReparar_Click(object sender, EventArgs e)
         {
+            if (!AccesoDatos.IntentarConexion())
+            {
+                MessageBox.Show("La base de datos está " +
+                    "cerrada", "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+
             if (Taller.Reparar(Taller))
             {
                 if (Modo == EModo.Sql)
                 {
-                    foreach(Barco b in Taller.Barcos)
+                    foreach (Barco b in Taller.Barcos)
                     {
                         if (b.EstadoReparado)
                         {
@@ -82,27 +90,43 @@ namespace TallerFrankyUi
             }
         }
 
+        //Intenta modificar un barco.
         private void btnModificar_Click(object sender, EventArgs e)
         {
             int index = lstTaller.SelectedIndex;
-            if (index == -1)
+            if (IndexVacio(index))
             {
-                MessageBox.Show("Por favor seleccione un barco", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             FrmBarco f = new FrmBarco(Principal, Taller.Barcos[index]);
             f.Show();
         }
 
+        //Intenta modificar un barco.
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             int index = lstTaller.SelectedIndex;
+            if (IndexVacio(index))
+            {
+                return;
+            }
             Principal.Barco = Taller.Barcos[index];
             DialogResult result = MessageBox.Show("¿Está seguro que desea " +
                 "eliminar el barco seleccionado?", "Borrar", 
                 MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             Principal.BorrarBarco(result);
+        }
+
+        //Revisa si el index tiene valor de no seleccionado.
+        private bool IndexVacio(int index)
+        {
+            if (index == -1)
+            {
+                MessageBox.Show("Por favor seleccione un barco", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true;
+            }
+            return false;
         }
     }
 }

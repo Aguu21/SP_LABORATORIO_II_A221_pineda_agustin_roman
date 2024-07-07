@@ -2,23 +2,23 @@
 <ArrayOfBarco xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Barco xsi:type="Pirata">
     <Costo>0</Costo>
-    <EstadoReparado>true</EstadoReparado>
-    <Nombre>rererer</Nombre>
+    <EstadoReparado>false</EstadoReparado>
+    <Nombre>Barco A</Nombre>
     <Operacion>Reparar_Mastil</Operacion>
-    <Tripulacion>17</Tripulacion>
-  </Barco>
-  <Barco xsi:type="Pirata">
-    <Costo>2213.307</Costo>
-    <EstadoReparado>true</EstadoReparado>
-    <Nombre>A</Nombre>
-    <Operacion>Reparar_Mastil</Operacion>
-    <Tripulacion>11</Tripulacion>
+    <Tripulacion>23</Tripulacion>
   </Barco>
   <Barco xsi:type="Marina">
-    <Costo>5426.614</Costo>
-    <EstadoReparado>true</EstadoReparado>
-    <Nombre>B</Nombre>
-    <Operacion>Reparar_Mastil</Operacion>
-    <Tripulacion>36</Tripulacion>
+    <Costo>0</Costo>
+    <EstadoReparado>false</EstadoReparado>
+    <Nombre>Barco B</Nombre>
+    <Operacion>Cambiar_Velas</Operacion>
+    <Tripulacion>35</Tripulacion>
+  </Barco>
+  <Barco xsi:type="Marina">
+    <Costo>0</Costo>
+    <EstadoReparado>false</EstadoReparado>
+    <Nombre>Barco C</Nombre>
+    <Operacion>Recargar_Cañones</Operacion>
+    <Tripulacion>44</Tripulacion>
   </Barco>
 </ArrayOfBarco>

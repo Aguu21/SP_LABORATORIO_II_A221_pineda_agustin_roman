@@ -103,6 +103,10 @@ namespace TallerFrankyUi
             result = MessageBox.Show("¿Estás seguro?",
                     "Confirmación Barco", MessageBoxButtons.OK);
             Principal.AgregarBarco(result);
+
+            txtNombre.Text = "";
+            cmbOperacion.SelectedIndex = 0;
+            cmbTipo.SelectedIndex = 0;
         }
 
         private void ActualizarBarco()
