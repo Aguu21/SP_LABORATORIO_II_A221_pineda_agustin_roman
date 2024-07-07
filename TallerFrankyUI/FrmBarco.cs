@@ -101,7 +101,7 @@ namespace TallerFrankyUi
                 Principal.Barco = m;
             }
             result = MessageBox.Show("¿Estás seguro?",
-                    "Confirmación Barco", MessageBoxButtons.OK);
+                    "Confirmación Barco", MessageBoxButtons.OKCancel);
             Principal.AgregarBarco(result);
 
             txtNombre.Text = "";
@@ -138,7 +138,7 @@ namespace TallerFrankyUi
             }
 
             result = MessageBox.Show("¿Estás seguro?",
-                    "Confirmación Barco", MessageBoxButtons.OK);
+                    "Confirmación Barco", MessageBoxButtons.OKCancel);
 
             Principal.ActualizarBarco(result, Barco.Nombre);
         }
