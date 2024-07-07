@@ -59,7 +59,7 @@ namespace TallerFrankyUi
 
         //Boton implementado para ver en tiempo real el cambio de
         //las reparaciones. Los comentarios pedian el uso de hilos.
-        private void RepararBtn_Click(object sender, EventArgs e)
+        private void btnReparar_Click(object sender, EventArgs e)
         {
             if (Taller.Reparar(Taller))
             {

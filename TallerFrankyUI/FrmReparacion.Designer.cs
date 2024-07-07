@@ -30,7 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmReparacion));
             this.lstTaller = new System.Windows.Forms.ListBox();
-            this.RepararBtn = new System.Windows.Forms.Button();
+            this.btnReparar = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnModificar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstTaller
@@ -38,20 +40,41 @@
             this.lstTaller.FormattingEnabled = true;
             this.lstTaller.ItemHeight = 16;
             this.lstTaller.Location = new System.Drawing.Point(229, 143);
-            this.lstTaller.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstTaller.Margin = new System.Windows.Forms.Padding(4);
             this.lstTaller.Name = "lstTaller";
             this.lstTaller.Size = new System.Drawing.Size(792, 292);
             this.lstTaller.TabIndex = 0;
             // 
-            // RepararBtn
+            // btnReparar
             // 
-            this.RepararBtn.Location = new System.Drawing.Point(142, 45);
-            this.RepararBtn.Name = "RepararBtn";
-            this.RepararBtn.Size = new System.Drawing.Size(75, 23);
-            this.RepararBtn.TabIndex = 1;
-            this.RepararBtn.Text = "RepararBtn";
-            this.RepararBtn.UseVisualStyleBackColor = true;
-            this.RepararBtn.Click += new System.EventHandler(this.RepararBtn_Click);
+            this.btnReparar.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReparar.Location = new System.Drawing.Point(527, 52);
+            this.btnReparar.Name = "btnReparar";
+            this.btnReparar.Size = new System.Drawing.Size(196, 33);
+            this.btnReparar.TabIndex = 1;
+            this.btnReparar.Text = "Reparar Barcos";
+            this.btnReparar.UseVisualStyleBackColor = true;
+            this.btnReparar.Click += new System.EventHandler(this.btnReparar_Click);
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.Location = new System.Drawing.Point(776, 52);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(196, 33);
+            this.btnEliminar.TabIndex = 2;
+            this.btnEliminar.Text = "Eliminar Barco";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            // 
+            // btnModificar
+            // 
+            this.btnModificar.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModificar.Location = new System.Drawing.Point(278, 52);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(196, 33);
+            this.btnModificar.TabIndex = 3;
+            this.btnModificar.Text = "Modificar Barco";
+            this.btnModificar.UseVisualStyleBackColor = true;
             // 
             // FrmReparacion
             // 
@@ -60,11 +83,13 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1305, 674);
-            this.Controls.Add(this.RepararBtn);
+            this.Controls.Add(this.btnModificar);
+            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.btnReparar);
             this.Controls.Add(this.lstTaller);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmReparacion";
@@ -79,7 +104,9 @@
         #endregion
 
         private System.Windows.Forms.ListBox lstTaller;
-        private System.Windows.Forms.Button RepararBtn;
+        private System.Windows.Forms.Button btnReparar;
+        private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button btnModificar;
     }
 }
 
